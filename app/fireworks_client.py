@@ -13,11 +13,11 @@ FIREWORKS_BASE = "https://api.fireworks.ai/inference/v1"
 FIREWORKS_API_KEY = os.environ.get("FIREWORKS_API_KEY", "")
 FIREWORKS_MODEL_VISION = os.environ.get(
     "FIREWORKS_MODEL_VISION",
-    "accounts/fireworks/models/llama-v3p2-90b-vision-instruct",
+    "accounts/fireworks/models/kimi-k2p6",
 )
 FIREWORKS_MODEL_TEXT = os.environ.get(
     "FIREWORKS_MODEL_TEXT",
-    "accounts/fireworks/models/llama-v3p1-8b-instruct",
+    "accounts/fireworks/models/gpt-oss-120b",
 )
 FIREWORKS_WHISPER_MODEL = os.environ.get(
     "FIREWORKS_WHISPER_MODEL",
@@ -63,7 +63,7 @@ class FireworksClient:
             f"All {MAX_RETRIES} attempts failed: {last_exc}"
         ) from last_exc
 
-    def _chat_completion(self, messages, model, temperature=0.3, max_tokens=512):
+    def _chat_completion(self, messages, model, temperature=0.3, max_tokens=512, timeout=None, **payload_extras):
         url = f"{FIREWORKS_BASE}/chat/completions"
         payload = {
             "model": model,
@@ -71,9 +71,11 @@ class FireworksClient:
             "temperature": temperature,
             "max_tokens": max_tokens,
         }
+        payload.update(payload_extras)
+        effective_timeout = timeout if timeout is not None else REQUEST_TIMEOUT
 
         def do_call():
-            with httpx.Client(timeout=httpx.Timeout(REQUEST_TIMEOUT)) as client:
+            with httpx.Client(timeout=httpx.Timeout(effective_timeout)) as client:
                 resp = client.post(url, headers=self._headers(), json=payload)
                 resp.raise_for_status()
                 data = resp.json()
@@ -95,7 +97,11 @@ class FireworksClient:
             })
 
         messages = [{"role": "user", "content": content}]
-        return self._chat_completion(messages, model=FIREWORKS_MODEL_VISION)
+        return self._chat_completion(
+            messages, model=FIREWORKS_MODEL_VISION,
+            thinking={"type": "disabled"},
+            timeout=60.0,
+        )
 
     def style_rewrite(self, stage1_output, style_prompt_template):
         prompt = style_prompt_template.format(stage1_output=stage1_output)

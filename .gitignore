@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.env
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Large Media Files
+# This ignores the heavy raw videos that cause the HTTP 408 error
+Test set/*.mp4
+*.avi
+*.mov
+
+# Keep all JSON files (tasks, results, configurations)
+# Removed the previous lines that ignored results.json, etc.
+
+# Project Specific
+# If you have specific local logs or temp files, add them here

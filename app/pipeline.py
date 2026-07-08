@@ -7,7 +7,6 @@ import logging
 
 import httpx
 
-from fireworks_client import FireworksClient
 from prompts import STYLE_PROMPTS
 
 logger = logging.getLogger(__name__)

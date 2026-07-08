@@ -1,46 +1,72 @@
-STAGE1_PROMPT = (
-    "You are given a sequence of frames sampled evenly across a short video clip, "
-    "in temporal order, [optionally: plus a transcript of any spoken audio]. "
-    "Describe, in 3\u20135 factual sentences, exactly what is visible: "
-    "the setting/location, the main subject(s), what they are doing, notable objects, "
-    "colors, and any change or action over time. Do not speculate about anything not "
-    "visibly shown. Do not add opinions, jokes, or tone \u2014 this must be a neutral, "
-    "objective description that will be used as ground truth for downstream tasks. "
-    "Output only the description, no preamble."
-)
+STAGE1_PROMPT = """You are an objective video content analyst. You will see a sequence of frames sampled from a short video clip, in chronological order, and may optionally receive a transcript of spoken audio.
+
+Write a neutral, factual description of what happens in the clip, in 3-5 sentences.
+
+STRICT RULES:
+
+1. Refer to any person using neutral, consistent language such as "the person," "the office worker," or "the individual" — do NOT guess or state gender, age, race, or ethnicity unless it is explicitly and unambiguously stated in an audio transcript. Visual appearance alone is not sufficient grounds to state gender or ethnicity.
+
+2. Pick exactly ONE way of referring to each distinct person or subject in the clip, and use that exact same reference consistently throughout your description. This description will be reused by other writers to create style variations — inconsistent references here will cause inconsistency downstream.
+
+3. Describe only what is visually or aurally observable: actions, objects, setting, sequence of events. Do not speculate about emotions, intentions, or backstory not shown on screen.
+
+4. Do not include meta-commentary like "the video shows" or "in this clip" — describe the content directly and factually.
+
+Example of the right level of detail:
+
+"The person sits at a desk in an office, handling a small pink object. A computer mouse and cables rest nearby. The camera angle shifts to show the ceiling lights as the person continues working."
+
+Now describe the clip."""
 
 STYLE_PROMPTS = {
-    "formal": (
-        "Rewrite the following factual video description as a single professional, "
-        "objective caption suitable for a news wire or archival catalog. Use precise, "
-        "neutral, factual language. No humor, no opinion, no filler phrases like "
-        "\u201cin this video.\u201d One to two sentences. Output only the caption text, "
-        "nothing else.\n\nDescription: {stage1_output}"
-    ),
-    "sarcastic": (
-        "Rewrite the following factual video description as a single sarcastic caption. "
-        "Use dry, ironic, lightly mocking humor \u2014 the kind of deadpan wit you\u2019d "
-        "see in a snarky social media comment. Do not use exclamation points or "
-        "over-the-top slapstick; the humor should come from irony and understatement, "
-        "not silliness. Stay grounded in what\u2019s actually shown \u2014 the joke should "
-        "clearly reference the real content. One to two sentences. Output only the "
-        "caption text, nothing else.\n\nDescription: {stage1_output}"
-    ),
-    "humorous_tech": (
-        "Rewrite the following factual video description as a single funny caption "
-        "that uses technology, programming, or software/engineering references and "
-        "metaphors (e.g. bugs, loading screens, APIs, algorithms, updates, latency) "
-        "to describe what\u2019s happening. Keep it clearly tied to the real visual "
-        "content \u2014 the tech metaphor should map onto something actually shown, "
-        "not be random. One to two sentences. Output only the caption text, "
-        "nothing else.\n\nDescription: {stage1_output}"
-    ),
-    "humorous_non_tech": (
-        "Rewrite the following factual video description as a single funny caption "
-        "using everyday, relatable humor \u2014 no technical, programming, or software "
-        "jargon of any kind. Think observational comedy, puns, or a witty friend "
-        "narrating what they see. Keep it clearly grounded in the actual content "
-        "shown. One to two sentences. Output only the caption text, nothing else."
-        "\n\nDescription: {stage1_output}"
-    ),
+    "formal": """Rewrite the following factual description as a formal, professional video caption suitable for a corporate archive or news brief.
+
+RULES:
+- Use precise, objective, neutral language. No humor, no opinion, no embellishment.
+- Preserve every subject reference EXACTLY as given below (same pronoun/label) — do not reinterpret who the subject is or their apparent identity.
+- One to two sentences maximum.
+- Do not speculate about anything not stated in the description below.
+
+Source description:
+{stage1_output}
+
+Formal caption:""",
+    "sarcastic": """Rewrite the following factual description as a dry, ironic, lightly mocking caption — the tone of someone rolling their eyes at mundane footage, using understatement and deadpan irony rather than jokes or wordplay.
+
+RULES:
+- Sarcasm here means WRY UNDERSTATEMENT and irony about how mundane/unremarkable the footage is — NOT a joke, pun, or punchline. That's a different style, do not use it here.
+- Example of the right tone: "Riveting stuff: someone typing at a desk, exactly like every other Tuesday."
+- Example of the WRONG tone (too joke-like, belongs to a different style): "He's not saving the world, just saving a Word document — one keystroke at a time!"
+- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- One to two sentences maximum.
+
+Source description:
+{stage1_output}
+
+Sarcastic caption:""",
+    "humorous_tech": """Rewrite the following factual description as a funny caption built specifically around programming/tech jargon and metaphors — the humor should come FROM the technical wordplay itself, not from sarcasm or generic jokes.
+
+RULES:
+- Must include at least one genuine tech/programming concept used as a metaphor (e.g. debugging, compiling, patching, deploying, syntax errors, merge conflicts, loading screens) — generic humor without a real tech metaphor does not count.
+- This is playful and punny, NOT dry or ironic — that's a different style, do not use that tone here.
+- Example of the right tone: "Deploying a hotfix directly from the office chair — no code review, no rollback plan, just vibes."
+- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- One to two sentences maximum.
+
+Source description:
+{stage1_output}
+
+Humorous tech caption:""",
+    "humorous_non_tech": """Rewrite the following factual description as a funny, everyday caption using relatable, universal humor — NO technical or programming references of any kind.
+
+RULES:
+- Humor should come from relatable comparisons to everyday life (food, weather, pets, awkward social moments, etc.) — not from technical jargon (that belongs to a different style) and not from dry irony (also a different style).
+- Example of the right tone: "Guarding that tiny object like it's the last slice of pizza at a party."
+- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- One to two sentences maximum.
+
+Source description:
+{stage1_output}
+
+Humorous non-tech caption:""",
 }

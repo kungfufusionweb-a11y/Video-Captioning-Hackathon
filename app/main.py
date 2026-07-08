@@ -5,7 +5,7 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from fireworks_client import FireworksClient
+from client_factory import get_client
 from pipeline import process_clip
 
 logging.basicConfig(
@@ -54,7 +54,7 @@ def main():
     tasks = load_tasks(args.input)
     logger.info("Loaded %d tasks from %s", len(tasks), args.input)
 
-    client = FireworksClient()
+    client = get_client()
     results = [None] * len(tasks)
 
     with ThreadPoolExecutor(max_workers=MAX_CONCURRENCY) as executor:

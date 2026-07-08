@@ -1,0 +1,5 @@
+# Ignore large videos in the Test set folder
+Test set/*.mp4
+
+# But make sure the downscaled folder is included
+!Test set/downscaled/

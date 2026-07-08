@@ -2,31 +2,61 @@
     {
         "task_id": "v1",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/2860-163617364_small.mp4.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
     },
     {
         "task_id": "v2",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/343478_small.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
     },
     {
         "task_id": "v3",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/7261920-uhd_2160_3840_25fps_small.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
     },
-	{
-        "task_id": "v3",
+    {
+        "task_id": "v4",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/8371253-uhd_4096_2160_25fps_small.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
     },
-	{
-        "task_id": "v3",
+    {
+        "task_id": "v5",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/mixkit-woman-walking-into-the-ocean-1114-hd-ready_small.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
     },
-	{
-        "task_id": "v3",
+    {
+        "task_id": "v6",
         "video_url": "https://raw.githubusercontent.com/kungfufusionweb-a11y/test-clips/main/uhd_30fps_small.mp4",
-        "styles": ["formal","sarcastic","humorous_tech","humorous_non_tech"]
-    }	
+        "styles": [
+            "formal",
+            "sarcastic",
+            "humorous_tech",
+            "humorous_non_tech"
+        ]
+    }
 ]

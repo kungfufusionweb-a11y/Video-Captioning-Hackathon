@@ -14,6 +14,18 @@ logger = logging.getLogger(__name__)
 NUM_FRAMES = 8
 
 
+def _num_frames_for_duration(duration_seconds: float) -> int:
+    """Scale frame count with clip length so longer clips get denser sampling."""
+    if duration_seconds <= 30:
+        return 8
+    elif duration_seconds <= 60:
+        return 12
+    elif duration_seconds <= 90:
+        return 16
+    else:
+        return 20
+
+
 def _download_video(url, dest_path):
     logger.info("Downloading %s", url)
     with httpx.Client(timeout=httpx.Timeout(120.0)) as client:
@@ -44,9 +56,11 @@ def _extract_frames(video_path, work_dir):
     duration = _probe_duration(video_path)
     logger.info("Video duration: %.2f s", duration)
 
+    num_frames = _num_frames_for_duration(duration)
+
     frame_paths = []
-    for i in range(NUM_FRAMES):
-        t = (i + 0.5) * duration / NUM_FRAMES
+    for i in range(num_frames):
+        t = (i + 0.5) * duration / num_frames
         out = os.path.join(work_dir, f"frame_{i:03d}.jpg")
         subprocess.run(
             [

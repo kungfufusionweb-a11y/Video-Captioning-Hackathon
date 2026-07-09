@@ -118,6 +118,7 @@ class FireworksClient:
         return self._chat_completion(
             messages, model=FIREWORKS_MODEL_TEXT,
             max_tokens=768,
+            reasoning_effort="low",
         )
 
     def transcribe(self, audio_bytes):

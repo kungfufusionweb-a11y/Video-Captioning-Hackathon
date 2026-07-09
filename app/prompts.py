@@ -6,7 +6,7 @@ STRICT RULES:
 
 1. Refer to any person using neutral, consistent language such as "the person," "the office worker," or "the individual" — do NOT guess or state gender, age, race, or ethnicity unless it is explicitly and unambiguously stated in an audio transcript. Visual appearance alone is not sufficient grounds to state gender or ethnicity.
 
-2. Pick exactly ONE way of referring to each distinct person or subject in the clip, and use that exact same reference consistently throughout your description. This description will be reused by other writers to create style variations — inconsistent references here will cause inconsistency downstream.
+2. Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing. This description will be reused by other writers to create style variations — inconsistent references here will cause inconsistency downstream.
 
 3. Describe only what is visually or aurally observable: actions, objects, setting, sequence of events. Do not speculate about emotions, intentions, or backstory not shown on screen.
 
@@ -23,7 +23,7 @@ STYLE_PROMPTS = {
 
 RULES:
 - Use precise, objective, neutral language. No humor, no opinion, no embellishment.
-- Preserve every subject reference EXACTLY as given below (same pronoun/label) — do not reinterpret who the subject is or their apparent identity.
+- Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing.
 - One to two sentences maximum.
 - Do not speculate about anything not stated in the description below.
 
@@ -37,7 +37,7 @@ RULES:
 - Sarcasm here means WRY UNDERSTATEMENT and irony about how mundane/unremarkable the footage is — NOT a joke, pun, or punchline. That's a different style, do not use it here.
 - Example of the right tone: "Riveting stuff: someone typing at a desk, exactly like every other Tuesday."
 - Example of the WRONG tone (too joke-like, belongs to a different style): "He's not saving the world, just saving a Word document — one keystroke at a time!"
-- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing.
 - One to two sentences maximum.
 
 Source description:
@@ -50,7 +50,7 @@ RULES:
 - Must include at least one genuine tech/programming concept used as a metaphor (e.g. debugging, compiling, patching, deploying, syntax errors, merge conflicts, loading screens) — generic humor without a real tech metaphor does not count.
 - This is playful and punny, NOT dry or ironic — that's a different style, do not use that tone here.
 - Example of the right tone: "Deploying a hotfix directly from the office chair — no code review, no rollback plan, just vibes."
-- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing.
 - One to two sentences maximum.
 
 Source description:
@@ -62,7 +62,7 @@ Humorous tech caption:""",
 RULES:
 - Humor should come from relatable comparisons to everyday life (food, weather, pets, awkward social moments, etc.) — not from technical jargon (that belongs to a different style) and not from dry irony (also a different style).
 - Example of the right tone: "Guarding that tiny object like it's the last slice of pizza at a party."
-- Preserve every subject reference EXACTLY as given below — do not reinterpret who the subject is.
+- Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing.
 - One to two sentences maximum.
 
 Source description:

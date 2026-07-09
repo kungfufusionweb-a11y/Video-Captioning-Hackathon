@@ -115,7 +115,11 @@ class FireworksClient:
     def style_rewrite(self, stage1_output, style_prompt_template):
         prompt = style_prompt_template.format(stage1_output=stage1_output)
         messages = [{"role": "user", "content": prompt}]
-        return self._chat_completion(messages, model=FIREWORKS_MODEL_TEXT)
+        return self._chat_completion(
+            messages, model=FIREWORKS_MODEL_TEXT,
+            thinking={"type": "disabled"},
+            max_tokens=768,
+        )
 
     def transcribe(self, audio_bytes):
         url = f"{FIREWORKS_BASE}/audio/transcriptions"

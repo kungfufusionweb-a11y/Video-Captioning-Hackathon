@@ -117,7 +117,6 @@ class FireworksClient:
         messages = [{"role": "user", "content": prompt}]
         return self._chat_completion(
             messages, model=FIREWORKS_MODEL_TEXT,
-            thinking={"type": "disabled"},
             max_tokens=768,
         )
 

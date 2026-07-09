@@ -79,7 +79,16 @@ class FireworksClient:
                 resp = client.post(url, headers=self._headers(), json=payload)
                 resp.raise_for_status()
                 data = resp.json()
-                return data["choices"][0]["message"]["content"].strip()
+                try:
+                    message = data["choices"][0]["message"]
+                    content = message.get("content")
+                    if content is None:
+                        logger.error("No 'content' in message. Full response: %s", data)
+                        raise FireworksClientError(f"No content in response message: {message}")
+                    return content.strip()
+                except (KeyError, IndexError) as e:
+                    logger.error("Malformed response structure: %s. Full response: %s", e, data)
+                    raise FireworksClientError(f"Malformed response: {e}") from e
 
         return self._retry_with_backoff(do_call)
 

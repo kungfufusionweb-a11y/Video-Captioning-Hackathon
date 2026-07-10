@@ -19,10 +19,6 @@ FIREWORKS_MODEL_TEXT = os.environ.get(
     "FIREWORKS_MODEL_TEXT",
     "accounts/fireworks/models/gpt-oss-120b",
 )
-FIREWORKS_WHISPER_MODEL = os.environ.get(
-    "FIREWORKS_WHISPER_MODEL",
-    "whisper-v3",
-)
 
 MAX_RETRIES = 3
 INITIAL_BACKOFF = 1.0
@@ -92,7 +88,7 @@ class FireworksClient:
 
         return self._retry_with_backoff(do_call)
 
-    def vision_describe(self, base64_frames, transcript=None):
+    def vision_describe(self, base64_frames):
         content = [{"type": "text", "text": STAGE1_PROMPT}]
         for i, frame in enumerate(base64_frames):
             content.append({
@@ -102,11 +98,6 @@ class FireworksClient:
             content.append({
                 "type": "image_url",
                 "image_url": {"url": f"data:image/jpeg;base64,{frame}"},
-            })
-        if transcript:
-            content.append({
-                "type": "text",
-                "text": f"Audio transcript: {transcript}",
             })
 
         messages = [{"role": "user", "content": content}]
@@ -127,18 +118,3 @@ class FireworksClient:
             reasoning_effort="low",
         )
 
-    def transcribe(self, audio_bytes):
-        url = f"{FIREWORKS_BASE}/audio/transcriptions"
-
-        def do_call():
-            with httpx.Client(timeout=httpx.Timeout(REQUEST_TIMEOUT)) as client:
-                resp = client.post(
-                    url,
-                    headers={"Authorization": f"Bearer {self.api_key}"},
-                    files={"file": ("audio.wav", audio_bytes, "audio/wav")},
-                    data={"model": FIREWORKS_WHISPER_MODEL},
-                )
-                resp.raise_for_status()
-                return resp.json().get("text", "").strip()
-
-        return self._retry_with_backoff(do_call)

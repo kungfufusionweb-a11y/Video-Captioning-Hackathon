@@ -1,3 +1,4 @@
+import hashlib
 import os
 import time
 import logging
@@ -88,7 +89,7 @@ class FireworksClient:
 
         return self._retry_with_backoff(do_call)
 
-    def vision_describe(self, base64_frames):
+    def vision_describe(self, base64_frames, task_id=None):
         content = [{"type": "text", "text": STAGE1_PROMPT}]
         for i, frame in enumerate(base64_frames):
             content.append({
@@ -99,6 +100,14 @@ class FireworksClient:
                 "type": "image_url",
                 "image_url": {"url": f"data:image/jpeg;base64,{frame}"},
             })
+
+        # Diagnostic hash immediately before the API call
+        concat = "".join(base64_frames)
+        frames_hash = hashlib.sha256(concat.encode("utf-8")).hexdigest()[:16]
+        logger.info(
+            "Task %s: frames sent to API (%d frames, hash=%s)",
+            task_id, len(base64_frames), frames_hash,
+        )
 
         messages = [{"role": "user", "content": content}]
         return self._chat_completion(

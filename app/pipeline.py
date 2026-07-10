@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import os
 import shutil
 import subprocess
@@ -107,10 +108,16 @@ def process_clip(task, client):
                 src = os.path.join(work_dir, f"frame_{i:03d}.jpg")
                 if os.path.exists(src):
                     shutil.copy2(src, debug_dir)
-            logger.info("Task %s: debug frames saved to %s", task_id, debug_dir)
+            # Diagnostic hash of frames saved to disk
+            concat = "".join(frames)
+            frames_hash = hashlib.sha256(concat.encode("utf-8")).hexdigest()[:16]
+            logger.info(
+                "Task %s: debug frames saved to %s (%d frames, hash=%s)",
+                task_id, debug_dir, len(frames), frames_hash,
+            )
 
         logger.info("Task %s: Stage 1 (vision) …", task_id)
-        stage1_output = client.vision_describe(frames)
+        stage1_output = client.vision_describe(frames, task_id=task_id)
         logger.info("Task %s: Stage 1 done (%d chars)", task_id, len(stage1_output))
 
         captions = {}

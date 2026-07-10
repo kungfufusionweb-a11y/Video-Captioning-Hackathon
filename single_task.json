@@ -1,7 +1,7 @@
 [
   {
-    "task_id": "v1",
-    "video_url": "https://storage.googleapis.com/amd-hackathon-clips/1860079-uhd_2560_1440_25fps.mp4",
+    "task_id": "v6",
+    "video_url": "https://cdn.jsdelivr.net/gh/kungfufusionweb-a11y/test-clips@main/uhd_30fps_small.mp4",
     "styles": [
       "formal",
       "sarcastic",

@@ -52,11 +52,15 @@ def _probe_duration(video_path):
     return float(result.stdout.strip())
 
 
-def _extract_frames(video_path, work_dir):
+def _extract_frames(video_path, work_dir, task_id):
     duration = _probe_duration(video_path)
     logger.info("Video duration: %.2f s", duration)
 
     num_frames = _num_frames_for_duration(duration)
+
+    debug_dir = os.path.join("debug_frames", str(task_id))
+    os.makedirs(debug_dir, exist_ok=True)
+    logger.info("Task %s: debug frames saved to %s", task_id, debug_dir)
 
     frame_paths = []
     for i in range(num_frames):
@@ -77,6 +81,7 @@ def _extract_frames(video_path, work_dir):
     for fp in frame_paths:
         with open(fp, "rb") as f:
             encoded.append(base64.b64encode(f.read()).decode("utf-8"))
+        shutil.copy2(fp, os.path.join(debug_dir, os.path.basename(fp)))
         os.remove(fp)
 
     logger.info("Extracted %d frames", len(encoded))
@@ -118,7 +123,7 @@ def process_clip(task, client):
         video_path = os.path.join(work_dir, "video.mp4")
         _download_video(video_url, video_path)
 
-        frames = _extract_frames(video_path, work_dir)
+        frames = _extract_frames(video_path, work_dir, task_id)
 
         transcript = None
         audio_bytes = _extract_audio(video_path)

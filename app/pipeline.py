@@ -28,7 +28,7 @@ def _num_frames_for_duration(duration_seconds: float) -> int:
 
 def _download_video(url, dest_path):
     logger.info("Downloading %s", url)
-    with httpx.Client(timeout=httpx.Timeout(120.0)) as client:
+    with httpx.Client(timeout=httpx.Timeout(120.0), follow_redirects=True) as client:
         resp = client.get(url)
         resp.raise_for_status()
         with open(dest_path, "wb") as f:

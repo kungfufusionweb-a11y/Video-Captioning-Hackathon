@@ -94,7 +94,11 @@ class FireworksClient:
 
     def vision_describe(self, base64_frames, transcript=None):
         content = [{"type": "text", "text": STAGE1_PROMPT}]
-        for frame in base64_frames:
+        for i, frame in enumerate(base64_frames):
+            content.append({
+                "type": "text",
+                "text": f"Frame {i+1} of {len(base64_frames)}:",
+            })
             content.append({
                 "type": "image_url",
                 "image_url": {"url": f"data:image/jpeg;base64,{frame}"},
@@ -108,6 +112,8 @@ class FireworksClient:
         messages = [{"role": "user", "content": content}]
         return self._chat_completion(
             messages, model=FIREWORKS_MODEL_VISION,
+            max_tokens=512,
+            temperature=0,
             thinking={"type": "disabled"},
             timeout=60.0,
         )

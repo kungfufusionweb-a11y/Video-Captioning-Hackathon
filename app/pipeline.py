@@ -52,7 +52,7 @@ def _probe_duration(video_path):
     return float(result.stdout.strip())
 
 
-def _extract_frames(video_path, work_dir):
+def _extract_frames(video_path, work_dir, keep_files=False):
     duration = _probe_duration(video_path)
     logger.info("Video duration: %.2f s", duration)
 
@@ -77,7 +77,8 @@ def _extract_frames(video_path, work_dir):
     for fp in frame_paths:
         with open(fp, "rb") as f:
             encoded.append(base64.b64encode(f.read()).decode("utf-8"))
-        os.remove(fp)
+        if not keep_files:
+            os.remove(fp)
 
     logger.info("Extracted %d frames", len(encoded))
     return encoded
@@ -95,7 +96,17 @@ def process_clip(task, client):
         video_path = os.path.join(work_dir, "video.mp4")
         _download_video(video_url, video_path)
 
-        frames = _extract_frames(video_path, work_dir)
+        debug_save = os.environ.get("DEBUG_SAVE_FRAMES", "false").lower() == "true"
+        frames = _extract_frames(video_path, work_dir, keep_files=debug_save)
+
+        if debug_save:
+            debug_dir = os.path.join("output", "debug_frames", task_id)
+            os.makedirs(debug_dir, exist_ok=True)
+            for i, _ in enumerate(frames):
+                src = os.path.join(work_dir, f"frame_{i:03d}.jpg")
+                if os.path.exists(src):
+                    shutil.copy2(src, debug_dir)
+            logger.info("Task %s: debug frames saved to %s", task_id, debug_dir)
 
         logger.info("Task %s: Stage 1 (vision) …", task_id)
         stage1_output = client.vision_describe(frames)

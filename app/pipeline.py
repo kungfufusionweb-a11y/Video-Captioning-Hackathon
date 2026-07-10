@@ -18,13 +18,13 @@ NUM_FRAMES = 8
 def _num_frames_for_duration(duration_seconds: float) -> int:
     """Scale frame count with clip length so longer clips get denser sampling."""
     if duration_seconds <= 30:
-        return 8
+        return 3
     elif duration_seconds <= 60:
-        return 12
+        return 4
     elif duration_seconds <= 90:
-        return 16
+        return 5
     else:
-        return 20
+        return 6
 
 
 def _download_video(url, dest_path):

@@ -100,7 +100,8 @@ def process_clip(task, client):
         frames = _extract_frames(video_path, work_dir, keep_files=debug_save)
 
         if debug_save:
-            debug_dir = os.path.join("output", "debug_frames", task_id)
+            output_base = os.path.dirname(os.environ.get("OUTPUT_PATH", "/output/results.json"))
+            debug_dir = os.path.join(output_base, "debug_frames", task_id)
             os.makedirs(debug_dir, exist_ok=True)
             for i, _ in enumerate(frames):
                 src = os.path.join(work_dir, f"frame_{i:03d}.jpg")

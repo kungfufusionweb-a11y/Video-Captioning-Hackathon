@@ -100,4 +100,5 @@ class FireworksMinimaxClient:
         return self._chat_completion(
             messages, model=FIREWORKS_MODEL_MINIMAX,
             max_tokens=768,
+            thinking={"type": "disabled"},
         )

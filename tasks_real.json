@@ -1,7 +1,7 @@
 [
     {
         "task_id": "v1",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/2860-163617364_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/2860-163617364_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -11,7 +11,7 @@
     },
     {
         "task_id": "v2",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/8371253-uhd_4096_2160_25fps_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/8371253-uhd_4096_2160_25fps_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -21,7 +21,7 @@
     },
     {
         "task_id": "v3",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_178862935.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_178862935.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -31,7 +31,7 @@
     },
     {
         "task_id": "v4",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_185967558.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_185967558.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -41,7 +41,7 @@
     },
     {
         "task_id": "v5",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_192795335.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_192795335.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -51,7 +51,7 @@
     },
     {
         "task_id": "v6",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_194212105.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_194212105.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -61,7 +61,7 @@
     },
     {
         "task_id": "v7",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_299878584_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_299878584_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -71,7 +71,7 @@
     },
     {
         "task_id": "v8",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_326056056_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_326056056_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -81,7 +81,7 @@
     },
     {
         "task_id": "v9",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_393401933_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_393401933_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -91,7 +91,7 @@
     },
     {
         "task_id": "v10",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_512805443_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_512805443_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -101,7 +101,7 @@
     },
     {
         "task_id": "v11",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_519166598_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_519166598_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -111,7 +111,7 @@
     },
     {
         "task_id": "v12",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/AdobeStock_599616375_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/AdobeStock_599616375_small.mp4",
         "styles": [
             "formal",
             "sarcastic",
@@ -121,7 +121,7 @@
     },
     {
         "task_id": "v13",
-        "video_url": "https://huggingface.co/datasets/kungfufusion-Dev/video-captioning/resolve/main/mixkit-woman-walking-into-the-ocean-1114-hd-ready_small.mp4",
+        "video_url": "https://pub-0c50160fc3164e1cb7c2889863213c8b.r2.dev/mixkit-woman-walking-into-the-ocean-1114-hd-ready_small.mp4",
         "styles": [
             "formal",
             "sarcastic",

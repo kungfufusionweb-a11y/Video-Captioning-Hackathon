@@ -1,9 +1,3 @@
-import base64
-import hashlib
-import os
-import shutil
-import subprocess
-import tempfile
 import logging
 
 import httpx
@@ -12,77 +6,37 @@ from prompts import STYLE_PROMPTS
 
 logger = logging.getLogger(__name__)
 
-NUM_FRAMES = 8
+MAX_VIDEO_BYTES = 80 * 1024 * 1024  # 80 MB
 
 
-def _num_frames_for_duration(duration_seconds: float) -> int:
-    """Scale frame count with clip length so longer clips get denser sampling."""
-    if duration_seconds <= 30:
-        return 3
-    elif duration_seconds <= 60:
-        return 4
-    elif duration_seconds <= 90:
-        return 5
-    else:
-        return 6
+class VideoSizeError(Exception):
+    pass
 
 
-def _download_video(url, dest_path):
-    logger.info("Downloading %s", url)
-    with httpx.Client(timeout=httpx.Timeout(120.0), follow_redirects=True) as client:
-        resp = client.get(url)
-        resp.raise_for_status()
-        with open(dest_path, "wb") as f:
-            f.write(resp.content)
-    logger.info("Downloaded %s (%d bytes)", url, os.path.getsize(dest_path))
-
-
-def _probe_duration(video_path):
-    result = subprocess.run(
-        [
-            "ffprobe", "-v", "error",
-            "-show_entries", "format=duration",
-            "-of", "csv=p=0",
-            video_path,
-        ],
-        capture_output=True,
-        text=True,
-        timeout=30,
-    )
-    result.check_returncode()
-    return float(result.stdout.strip())
-
-
-def _extract_frames(video_path, work_dir, keep_files=False):
-    duration = _probe_duration(video_path)
-    logger.info("Video duration: %.2f s", duration)
-
-    num_frames = _num_frames_for_duration(duration)
-
-    frame_paths = []
-    for i in range(num_frames):
-        t = (i + 0.5) * duration / num_frames
-        out = os.path.join(work_dir, f"frame_{i:03d}.jpg")
-        subprocess.run(
-            [
-                "ffmpeg", "-ss", str(t), "-i", video_path,
-                "-vframes", "1", "-q:v", "2", out, "-y",
-            ],
-            capture_output=True,
-            timeout=30,
-            check=True,
-        )
-        frame_paths.append(out)
-
-    encoded = []
-    for fp in frame_paths:
-        with open(fp, "rb") as f:
-            encoded.append(base64.b64encode(f.read()).decode("utf-8"))
-        if not keep_files:
-            os.remove(fp)
-
-    logger.info("Extracted %d frames", len(encoded))
-    return encoded
+def _check_video_size(video_url: str) -> None:
+    logger.info("Checking video size: %s", video_url)
+    try:
+        with httpx.Client(timeout=httpx.Timeout(10.0)) as client:
+            resp = client.head(video_url, follow_redirects=True)
+            resp.raise_for_status()
+            content_length = resp.headers.get("Content-Length")
+            if content_length is None:
+                logger.warning(
+                    "Cannot determine video size (no Content-Length header) — proceeding without guard"
+                )
+                return
+            size = int(content_length)
+            size_mb = size / (1024 * 1024)
+            if size > MAX_VIDEO_BYTES:
+                raise VideoSizeError(
+                    f"Video exceeds size threshold for direct video_url ingestion: {size_mb:.1f}MB "
+                    f"(limit: {MAX_VIDEO_BYTES / (1024 * 1024):.0f}MB) — url: {video_url}"
+                )
+            logger.info("Video size: %.1f MB (within %.0f MB limit)", size_mb, MAX_VIDEO_BYTES / (1024 * 1024))
+    except VideoSizeError:
+        raise
+    except Exception as e:
+        logger.warning("Failed to HEAD video URL (%s) — proceeding without size guard: %s", video_url, e)
 
 
 def process_clip(task, client):
@@ -91,33 +45,11 @@ def process_clip(task, client):
     styles = task["styles"]
 
     logger.info("=== Task %s started ===", task_id)
-    work_dir = tempfile.mkdtemp(prefix=f"clip_{task_id}_")
 
     try:
-        video_path = os.path.join(work_dir, "video.mp4")
-        _download_video(video_url, video_path)
-
-        debug_save = os.environ.get("DEBUG_SAVE_FRAMES", "false").lower() == "true"
-        frames = _extract_frames(video_path, work_dir, keep_files=debug_save)
-
-        if debug_save:
-            output_base = os.path.dirname(os.environ.get("OUTPUT_PATH", "/output/results.json"))
-            debug_dir = os.path.join(output_base, "debug_frames", task_id)
-            os.makedirs(debug_dir, exist_ok=True)
-            for i, _ in enumerate(frames):
-                src = os.path.join(work_dir, f"frame_{i:03d}.jpg")
-                if os.path.exists(src):
-                    shutil.copy2(src, debug_dir)
-            # Diagnostic hash of frames saved to disk
-            concat = "".join(frames)
-            frames_hash = hashlib.sha256(concat.encode("utf-8")).hexdigest()[:16]
-            logger.info(
-                "Task %s: debug frames saved to %s (%d frames, hash=%s)",
-                task_id, debug_dir, len(frames), frames_hash,
-            )
-
-        logger.info("Task %s: Stage 1 (vision) …", task_id)
-        stage1_output = client.vision_describe(frames, task_id=task_id)
+        logger.info("Task %s: Stage 1 (vision, video_url) …", task_id)
+        _check_video_size(video_url)
+        stage1_output = client.vision_describe(video_url)
         logger.info("Task %s: Stage 1 done (%d chars)", task_id, len(stage1_output))
 
         captions = {}
@@ -143,8 +75,3 @@ def process_clip(task, client):
         for style in styles:
             fallback[style] = f"[{style} caption unavailable]"
         return {"task_id": task_id, "captions": fallback}
-
-    finally:
-        if os.path.exists(work_dir):
-            shutil.rmtree(work_dir, ignore_errors=True)
-            logger.info("Task %s: cleaned up temp dir", task_id)

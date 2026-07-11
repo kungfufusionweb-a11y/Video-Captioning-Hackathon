@@ -1,25 +1,17 @@
-import hashlib
 import os
 import time
 import logging
 
 import httpx
 
-from prompts import STAGE1_PROMPT
+from prompts import STAGE1_PROMPT, STYLE_PROMPTS
 
 logger = logging.getLogger(__name__)
 
 FIREWORKS_BASE = "https://api.fireworks.ai/inference/v1"
 
 FIREWORKS_API_KEY = os.environ.get("FIREWORKS_API_KEY", "")
-FIREWORKS_MODEL_VISION = os.environ.get(
-    "FIREWORKS_MODEL_VISION",
-    "accounts/fireworks/models/kimi-k2p6",
-)
-FIREWORKS_MODEL_TEXT = os.environ.get(
-    "FIREWORKS_MODEL_TEXT",
-    "accounts/fireworks/models/gpt-oss-120b",
-)
+FIREWORKS_MODEL_MINIMAX = "accounts/fireworks/models/minimax-m3"
 
 MAX_RETRIES = 3
 INITIAL_BACKOFF = 1.0
@@ -89,41 +81,24 @@ class FireworksClient:
 
         return self._retry_with_backoff(do_call)
 
-    def vision_describe(self, base64_frames, task_id=None):
-        content = [{"type": "text", "text": STAGE1_PROMPT}]
-        for i, frame in enumerate(base64_frames):
-            content.append({
-                "type": "text",
-                "text": f"Frame {i+1} of {len(base64_frames)}:",
-            })
-            content.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:image/jpeg;base64,{frame}"},
-            })
-
-        # Diagnostic hash immediately before the API call
-        concat = "".join(base64_frames)
-        frames_hash = hashlib.sha256(concat.encode("utf-8")).hexdigest()[:16]
-        logger.info(
-            "Task %s: frames sent to API (%d frames, hash=%s)",
-            task_id, len(base64_frames), frames_hash,
-        )
-
+    def vision_describe(self, video_url: str):
+        content = [
+            {"type": "text", "text": STAGE1_PROMPT},
+            {"type": "video_url", "video_url": {"url": video_url}},
+        ]
         messages = [{"role": "user", "content": content}]
         return self._chat_completion(
-            messages, model=FIREWORKS_MODEL_VISION,
-            max_tokens=512,
-            temperature=0,
+            messages, model=FIREWORKS_MODEL_MINIMAX,
+            max_tokens=600,
+            temperature=0.3,
             thinking={"type": "disabled"},
-            timeout=60.0,
         )
 
     def style_rewrite(self, stage1_output, style_prompt_template):
         prompt = style_prompt_template.format(stage1_output=stage1_output)
         messages = [{"role": "user", "content": prompt}]
         return self._chat_completion(
-            messages, model=FIREWORKS_MODEL_TEXT,
+            messages, model=FIREWORKS_MODEL_MINIMAX,
             max_tokens=768,
-            reasoning_effort="low",
+            thinking={"type": "disabled"},
         )
-

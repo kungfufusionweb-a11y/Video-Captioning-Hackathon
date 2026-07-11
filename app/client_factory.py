@@ -1,34 +1,15 @@
-import os
 import logging
+import os
+
+from fireworks_client import FireworksClient
 
 logger = logging.getLogger(__name__)
 
 
 def get_client():
-    provider = os.environ.get("CAPTION_PROVIDER", "fireworks").strip().lower()
-
-    if provider == "fireworks":
-        from fireworks_client import FireworksClient
-
-        if not os.environ.get("FIREWORKS_API_KEY"):
-            raise RuntimeError(
-                "CAPTION_PROVIDER=fireworks but FIREWORKS_API_KEY is not set"
-            )
-        logger.info("Using Fireworks client")
-        return FireworksClient()
-
-    elif provider == "groq":
-        from groq_client import GroqClient
-
-        if not os.environ.get("GROQ_API_KEY"):
-            raise RuntimeError(
-                "CAPTION_PROVIDER=groq but GROQ_API_KEY is not set"
-            )
-        logger.info("Using Groq client")
-        return GroqClient()
-
-    else:
+    if not os.environ.get("FIREWORKS_API_KEY"):
         raise RuntimeError(
-            f"Unknown CAPTION_PROVIDER '{provider}'. "
-            f"Expected 'fireworks' or 'groq'."
+            "FIREWORKS_API_KEY is not set — cannot create Fireworks client"
         )
+    logger.info("Using Fireworks client (MiniMax M3)")
+    return FireworksClient()

@@ -4,6 +4,8 @@ Write a neutral, factual description of what happens in the clip, in 3-5 sentenc
 
 IMPORTANT: This is real video footage of real subjects, never an abstract animation, digital art, or kaleidoscope pattern, unless you are highly confident no recognizable real-world object, person, food, animal, or setting is present anywhere in any frame. Round or rotating camera shots of plates, bowls, or dishes are common in food videography — look carefully for food items, tableware, and surfaces before ever describing something as abstract, kaleidoscopic, or a rotating pattern.
 
+If you can identify ANY specific food items, tableware, plates, or surfaces anywhere in the frames — even if the shot uses an unusual angle, extreme close-up, or rotating camera movement — you MUST describe the scene as real footage of that food/setting. Do not hedge toward 'abstract' or 'kaleidoscopic' once you have identified concrete real-world objects; commit to the concrete interpretation.
+
 STRICT RULES:
 
 1. Refer to any person using neutral, consistent language such as "the person," "the office worker," or "the individual" — do NOT guess or state gender, age, race, or ethnicity unless it is explicitly and unambiguously stated in an audio transcript. Visual appearance alone is not sufficient grounds to state gender or ethnicity.

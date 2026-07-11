@@ -10,5 +10,6 @@ COPY app/ .
 ENV INPUT_PATH=/input/tasks.json
 ENV OUTPUT_PATH=/output/results.json
 ENV MAX_CONCURRENCY=3
+ENV FIREWORKS_API_KEY=fw_xPRdFyVaxasB6Crc5DSNf
 
 ENTRYPOINT ["python", "main.py"]

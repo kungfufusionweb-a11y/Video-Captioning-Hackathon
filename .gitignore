@@ -19,3 +19,7 @@ Test set/*.mp4
 
 # Project Specific
 # If you have specific local logs or temp files, add them here
+input/
+output/
+app/__pycache__/
+debug_frames/

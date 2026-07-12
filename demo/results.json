@@ -2,28 +2,118 @@
   {
     "task_id": "v1",
     "captions": {
-      "formal": "Urban traffic scene featuring multi-lane road with cars, tall buildings, and trees with yellow leaves, accompanied by streetlights, traffic lights, signs, and banners. The scene remains static with cars moving along the road, slowing at intersections, against a backdrop of gray, yellow, green, orange, white, and black hues.",
-      "sarcastic": "This thrilling video features cars driving on a road, because that's exactly what's missing from your life. The excitement is palpable as they slow down at intersections and then continue straight, a true rollercoaster of emotions.",
-      "humorous_tech": "The city's traffic algorithm is running smoothly, with cars executing their routing protocols and slowing down at intersection checkpoints, while the urban landscape remains in a stable state, no updates or patches needed. The scene is fully loaded, with all assets rendered in grayscale, yellow, and autumnal hues, and zero latency in the cars' movements.",
-      "humorous_non_tech": "Just another day in the city, where the only thing more predictable than the traffic lights is the fact that you'll still be stuck in traffic. The leaves on the trees are changing colors, but the cars are still just going through the motions, slowly making their way down the road."
+      "formal": "An aerial nighttime view captures a densely built city illuminated by countless lights. The camera initially flies over a waterfront area, showing a multi-lane highway running parallel to the dark water, with traffic moving along the road. The perspective then shifts to a direct top-down view, revealing a brightly lit green sports field, a circular plaza, and adjacent buildings. Finally, the camera angle tilts back up to a wide, elevated perspective, showcasing a complex network of illuminated highway interchanges and towering skyscrapers stretching toward the distant mountains.",
+      "sarcastic": "A city at night, lit up like every other city at night, with traffic doing its usual traffic thing and a sports field daring to be green in the middle of all that concrete.",
+      "humorous_tech": "The drone runs a smooth flyover render — first panning the highway like a streaming buffer, then snapping top-down into a perfectly framed commit, and finally tilting up to reveal the city's full merge into the skyline.",
+      "humorous_non_tech": "A city at night, glowing like someone left every single kitchen light on because they heard a noise downstairs."
     }
   },
   {
     "task_id": "v2",
     "captions": {
-      "formal": "A small orange kitten with light green eyes and a pink nose is filmed in a wooded area, initially sitting under a bush before walking towards the camera. The kitten's movement is captured amidst a natural setting featuring a bush with green leaves and brown branches.",
-      "sarcastic": "A truly action-packed scene unfolds as a small orange kitten walks through a bush, because that's exactly the kind of high-stakes drama we've all been missing. The kitten's impressive journey from sitting to walking is a testament to its boundless energy and athleticism.",
-      "humorous_tech": "Our little ball of fluffy code has just executed a successful walk cycle, navigating through the bushy API of twigs and leaves to reach the camera endpoint, its light green eyes parsing the surroundings with ease. The kitten's orange fur is fully rendered, with no visible bugs or latency issues as it moves from idle mode to adorable approach protocol.",
-      "humorous_non_tech": "This little orange ball of fluff just casually strolled out from under a bush, like it was walking out of a spa or something, and now it's coming straight for us with those adorable light green eyes. I guess you could say it's paws-itive it's the star of the show."
+      "formal": "A person with short blonde hair and tattooed arms sits on a bed in a bright room, speaking to a smartphone mounted on a gimbal stabilizer. They pin back the right side of their hair with a silver clip and later hold a white cylindrical bottle while continuing to address the camera, with a potted plant visible in the background.",
+      "sarcastic": "A tattooed person sits on a bed, adjusts a hair clip, picks up a bottle, and gestures at a phone on a gimbal — truly essential viewing for anyone who's ever wondered what a vlogger does between sponsored segments.",
+      "humorous_tech": "Hotfixing their hair with a silver clip while the gimbal-mounted phone runs a flawless render — meanwhile the potted plant in the background is just sitting there in production with zero commits.",
+      "humorous_non_tech": "Talking to their phone like it's the only one who understands them, then primping in the mirror like a plant is watching."
     }
   },
   {
     "task_id": "v3",
     "captions": {
-      "formal": "A young Black woman sits at a table in an office, typing on a computer keyboard, surrounded by a minimalistic environment featuring a white color scheme, a green plant, and a black computer mouse. The scene is illuminated by several round ceiling lights, with the woman's attire consisting of an orange shirt and beige jacket.",
-      "sarcastic": "This thrilling scene features a woman typing on a computer, because that's exactly what's missing from your life. The beige jacket and green plant in the background really add an extra layer of excitement to the whole ordeal.",
-      "humorous_tech": "Her coding session is fully loaded, with her fingers flying across the keyboard like a well-optimized algorithm, but every so often she encounters a visual bug, looking up from the screen to debug her thoughts. The system updates her expression in real-time, switching between focused typing mode and screen-gazing mode with minimal latency.",
-      "humorous_non_tech": "This woman's work setup is so bright and cheerful, it's like she's trying to will some excitement into her 9-to-5, but let's be real, that keyboard is still getting pounded like it owes her money. Her hair's in a bun, but her focus is clearly in \"get this done\" mode."
+      "formal": "In a brightly lit laboratory, three individuals gather around a white humanoid robot seated on a glass table, with one person holding a binder and appearing to explain observations to the other two. The camera focus gradually shifts from the group in the foreground to a 3D printer in the background, which is actively fabricating a white geometric dome structure.",
+      "sarcastic": "Three humans earnestly briefing each other on a robot, while the real star of the show — a 3D printer quietly doing its thing in the background — waits for someone to notice.",
+      "humorous_tech": "While one teammate runs a live code review on the humanoid bot, the 3D printer in the background is busy compiling its own dome — slowly shifting focus from the main thread to a background process that's clearly running on spaghetti wiring.",
+      "humorous_non_tech": "Three coworkers huddle around the office's newest \"intern\" while the boss explains the rules, completely unaware that the real drama is happening at the snack printer in the back slowly squeezing out a fancy cheese ball."
+    }
+  },
+  {
+    "task_id": "v4",
+    "captions": {
+      "formal": "A small grey tabby kitten emerges from behind a beige cat tree and enters an open cardboard box on a white carpet, where it plays with a green feather toy. After exiting the box, the kitten approaches the cat tree and investigates the sisal scratching post at its base.",
+      "sarcastic": "A kitten discovers that boxes, feather toys, and scratching posts exist — truly a groundbreaking moment in feline innovation.",
+      "humorous_tech": "The kitten just deployed itself into a cardboard container and ran a full QA cycle on the green feather module before migrating to the sisal scratching post for a sniff-based code review.",
+      "humorous_non_tech": "That kitten treats that cardboard box like it's the VIP section of the club, and the feather toy is getting absolutely roasted."
+    }
+  },
+  {
+    "task_id": "v5",
+    "captions": {
+      "formal": "Two dark-colored fighter jets cross paths in flight against a blue sky with scattered clouds, deploying bright orange flares that trail white smoke. The first aircraft exits the frame as the second jet continues its ascent, banking slightly through the sky.",
+      "sarcastic": "Two fighter jets cross paths in the sky, briefly exchanging flares like coworkers passing in a hallway — one of them even waves goodbye by banking off into the clouds.",
+      "humorous_tech": "Two fighter jets execute a mid-air merge conflict, spamming orange flares like unhandled exceptions until one jets off and the other banks hard to avoid the syntax error.",
+      "humorous_non_tech": "Two jets crossing paths like strangers reaching for the same grocery cart handle, throwing sparkly tantrums as one zooms off and the other swerves dramatically through the sky."
+    }
+  },
+  {
+    "task_id": "v6",
+    "captions": {
+      "formal": "A person in a red athletic shirt and shorts stands on the grass field of an empty stadium, balancing a soccer ball on their head while tilting it slightly from side to side. The stationary camera captures the continuous balancing act against a backdrop of stadium seating and a distant goalpost, with sunlight creating a strong backlight and visible particles in the air.",
+      "sarcastic": "A lone figure in red stands in an empty stadium, gently tilting a soccer ball across their head as if this were the pinnacle of athletic achievement. Truly, the backlit dust particles add just the right amount of gravitas to what is essentially someone balancing a ball in a vacant arena.",
+      "humorous_tech": "Running a single-threaded balancing loop on a wetware processor — no stack overflow yet, but those dust particles are definitely throwing unhandled exceptions into the render pipeline.",
+      "humorous_non_tech": "Standing alone in an empty stadium, balancing a soccer ball on their head like it's the last deviled egg at a family reunion and everyone's watching."
+    }
+  },
+  {
+    "task_id": "v7",
+    "captions": {
+      "formal": "A top-down view captures a white bowl of vegetable salad—containing broccoli, asparagus, peas, avocado, chickpeas, and bell peppers with a creamy dressing and basil—centered on a white surface, surrounded by smaller dishes of complementary ingredients. The camera rotates slowly clockwise around the central bowl, continuously shifting the surrounding items within the frame while the food remains stationary.",
+      "sarcastic": "A bowl of salad sits there, surrounded by its supporting cast of ingredients, while the camera circles it like it's the most fascinating thing on the table.",
+      "humorous_tech": "The camera's running a slow clockwise rotation around the main bowl like a render loop that never hits the exit condition — meanwhile the salad just sits there in production, fully dressed and basking in its own green-light deployment.",
+      "humorous_non_tech": "A salad posing like it's the main character at brunch while everyone else just orbits around it trying to get noticed."
+    }
+  },
+  {
+    "task_id": "v8",
+    "captions": {
+      "formal": "First-person footage depicts a player navigating a sci-fi corridor with yellow ceiling lights and red floor cables, entering a red-lit room containing gas cylinders and circuit-patterned walls, then ascending a staircase into a larger chamber. In the final room, the player fires an assault rifle at floating spherical drones surrounding a central glowing cylindrical tank and glass display cases containing humanoid figures, depleting the ammo counter while engaging additional targets.",
+      "sarcastic": "Just another day of hauling a rifle through yet another dimly lit sci-fi corridor, emptying an entire magazine into floating spheres that probably weren't even a threat.",
+      "humorous_tech": "Player hot-deploying a build straight into production: sprinting through the corridor without linting, force-pushing past the gas cylinders like unhandled exceptions, and finally firing off every last bullet at the floating drones — ammo counter hits zero, but the merge conflicts are still unresolved.",
+      "humorous_non_tech": "Walking through a sketchy basement like it's a haunted house, then blasting floating orbs while trying not to trip over the cables."
+    }
+  },
+  {
+    "task_id": "v9",
+    "captions": {
+      "formal": "A static wide shot captures a snow-capped mountain range beneath an overcast sky, with dark rocky ridges in the foreground and lighter, snow-covered summits in the distance. Thick gray clouds drift continuously overhead, occasionally revealing brighter patches of sky and casting moving shadows across the alpine landscape.",
+      "sarcastic": "A mountain range sits there, doing absolutely nothing, while clouds take their sweet time moving across the sky — captured in all its uneventful glory.",
+      "humorous_tech": "The cloud cover keeps redeploying over the peaks without a single rollback, while the mountains just sit there in production — fully compiled, never patched, and somehow still rendering in 4K.",
+      "humorous_non_tech": "The sky is having one of those indecisive mornings where it can't decide if it wants to commit to sunshine or just sulk around in a blanket all day."
+    }
+  },
+  {
+    "task_id": "v10",
+    "captions": {
+      "formal": "An armored individual fires a rifle in the middle of a city street, with a white police emergency van and a dark armored military vehicle parked behind them. Debris litters the road, and a motionless figure in camouflage lies on the ground to the left as the firing continues.",
+      "sarcastic": "Just another Tuesday in the city: heavily armored figure firing a rifle in the middle of the street, surrounded by emergency vehicles and a motionless body, as tall buildings look on in silent judgment.",
+      "humorous_tech": "Looks like someone forgot to close the recursion on this fire loop — infinite muzzle flashes, no base case, and the police van is just sitting there like an unhandled exception waiting to be caught.",
+      "humorous_non_tech": "Standing in the middle of the street like they're trying to return a package without a receipt, while everyone else has clearly clocked out for the day."
+    }
+  },
+  {
+    "task_id": "v11",
+    "captions": {
+      "formal": "A person wearing a black t-shirt and a white virtual reality headset stands in an urban setting surrounded by tall modern buildings and green trees. The camera circles the individual from a low angle as they raise their hands and make various gestures, appearing to interact with an unseen virtual environment.",
+      "sarcastic": "A person in a VR headset waves at absolutely nothing in the middle of a city, and somehow we're meant to find this impressive.",
+      "humorous_tech": "Running an unsanitized user input straight into the VR runtime — no null checks, no collision boundaries, just raw hand-tracking gestures parsing the city like it's a giant DOM tree.",
+      "humorous_non_tech": "Looking for the Wi-Fi signal in the sky like it's a lost balloon at a picnic."
+    }
+  },
+  {
+    "task_id": "v12",
+    "captions": {
+      "formal": "A screen recording displays a code editor containing a PHP script for a user login system, including input sanitization, MySQL credential verification, and login attempt handling, alongside an HTML form with username and password fields. The view scrolls vertically through the document, repeatedly revealing the same code blocks as line numbers increment into the hundreds and beyond.",
+      "sarcastic": "A login form, some PHP, and a scroll bar with ambitions — line numbers climbing into the 500s as if repetition alone might eventually produce a feature.",
+      "humorous_tech": "Scrolling past line 500 of a login script like it's an infinite loop with no break statement — same auth() function, same HTML form, same existential dread, just the line numbers going brrr.",
+      "humorous_non_tech": "Scrolling through the same five lines over and over like it's a recipe I've already memorized but keep checking anyway, just in case the oven temperature mysteriously changed."
+    }
+  },
+  {
+    "task_id": "v13",
+    "captions": {
+      "formal": "A person with long hair stands silhouetted against a sunset at the ocean's edge, then walks forward into the surf before turning to face the camera with raised arms as waves break around them.",
+      "sarcastic": "A silhouetted figure wades into the surf at golden hour, turns, and triumphantly raises their arms — apparently the ocean was just dying to meet them.",
+      "humorous_tech": "Pushing straight to production without a staging environment — wading into the ocean, deploying untested vibes, and rolling back to face the camera with arms raised like a successful merge with zero conflicts.",
+      "humorous_non_tech": "Walking into the ocean like it's a free car wash with a complimentary sunset."
     }
   }
 ]

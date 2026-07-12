@@ -18,6 +18,8 @@ STRICT RULES:
 
 4. Do not include meta-commentary like "the video shows" or "in this clip" — describe the content directly and factually.
 
+5. Carefully distinguish between humans and robotic, mechanical, or armored non-human figures — look for exposed joints, non-organic materials, weapon mounts, or visor-style heads that indicate a machine rather than a person, before describing any figure as human.
+
 Example of the right level of detail:
 
 "The person sits at a desk in an office, handling a small pink object. A computer mouse and cables rest nearby. The camera angle shifts to show the ceiling lights as the person continues working."

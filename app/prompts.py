@@ -45,6 +45,7 @@ RULES:
 - Example of the WRONG tone (too joke-like, belongs to a different style): "He's not saving the world, just saving a Word document — one keystroke at a time!"
 - Refer to the same people/subjects described below using consistent terms and the same pronoun — don't switch pronouns or reinterpret who they are, but you don't need to reuse exact phrasing. If the source description doesn't specify gender, keep using a gender-neutral reference (e.g. 'the person', 'they') rather than guessing.
 - One to two sentences maximum.
+- Vary your sentence opening and phrasing across different clips — do not default to stock openers like 'Truly groundbreaking' or similar templated phrases. Find a sarcastic angle specific to what's actually happening in THIS clip's description, not a generic one-size-fits-all opener.
 
 Source description:
 {stage1_output}

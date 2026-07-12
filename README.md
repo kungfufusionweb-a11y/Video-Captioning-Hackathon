@@ -4,61 +4,53 @@ Docker-based video captioning pipeline that reads a task list, generates four st
 captions per video clip (formal, sarcastic, humorous_tech, humorous_non_tech) using
 Fireworks AI models, and writes results to a fixed JSON path.
 
+## How it works
+
+The container reads `/input/tasks.json`, processes each video clip through a
+vision-capable Fireworks AI model to extract factual scene content, then generates
+all four required caption styles from that grounded description. Clips are processed
+in parallel (bounded by `MAX_CONCURRENCY`), with each clip's model calls run
+sequentially. Results are written to `/output/results.json` in the required schema,
+with one entry per task ID.
+
+## AMD / Fireworks usage
+
+- Caption generation runs entirely through the Fireworks AI API (vision + text models).
+- The Fireworks API key is required at runtime — see "Run Docker container" below.
+
 ## Prerequisites
 
 - Python 3.11+ (for local testing)
 - Docker (for containerized deployment)
 - A [Fireworks AI](https://fireworks.ai) API key
 
-## Setup
-
-1. Set your API key:
-   ```bash
-   export FIREWORKS_API_KEY="your-api-key-here"
-   ```
-
-2. (Optional) Override model names via environment variables:
-   - `FIREWORKS_MODEL_VISION` (default: `accounts/fireworks/models/llama-v3p2-90b-vision-instruct`)
-   - `FIREWORKS_MODEL_TEXT` (default: `accounts/fireworks/models/llama-v3p1-8b-instruct`)
-   - `FIREWORKS_WHISPER_MODEL` (default: `whisper-v3`)
-   - `MAX_CONCURRENCY` (default: `3`)
-
-## Local testing (outside Docker)
+## Pull image
 
 ```bash
-cd app
-pip install -r requirements.txt
-python main.py --input ../sample_tasks.json --output ../out.json
-```
-
-## Build Docker image
-
-```bash
-docker buildx build --platform linux/amd64 --tag video-captioning:latest .
+docker pull fusiondeve/video-captioning-agent:latest
 ```
 
 ## Run Docker container
 
 ```bash
 docker run --rm \
-  -e FIREWORKS_API_KEY="$FIREWORKS_API_KEY" \
-  -v "$(pwd)/sample_tasks.json:/input/tasks.json" \
-  -v "$(pwd)/output:/output" \
-  video-captioning:latest
+  -v $(pwd)/input:/input \
+  -v $(pwd)/output:/output \
+  fusiondeve/video-captioning-agent:latest
+echo "Exit code: $?"
 ```
 
-## Push to registry (for submission)
+The container reads task definitions from `/input/tasks.json` and writes results to
+`/output/results.json`. Exit code `0` indicates a clean run.
 
-```bash
-docker buildx build --platform linux/amd64 --tag <your-registry>/<name>:latest --push .
-```
+## Output
 
-## Known limitations
+`output/results.json` — a JSON array with one object per task, containing `task_id`
+and a `captions` object with `formal`, `sarcastic`, `humorous_tech`, and
+`humorous_non_tech` keys.
 
-- Audio transcription is best-effort; if extraction or transcription fails, the Stage 1
-  vision model runs without a transcript.
-- Videos that fail to download or process after retries get generic fallback captions
-  rather than being dropped.
-- The pipeline runs model calls sequentially per clip but processes clips in parallel
-  (bounded by `MAX_CONCURRENCY`).
-- All caption text is in English regardless of clip content.
+## Main code path
+
+- `main.py` (or your actual entrypoint file) — orchestrates task loading, per-clip
+  processing, and result writing.
+- Entrypoint runs automatically on container start; no manual setup required.
